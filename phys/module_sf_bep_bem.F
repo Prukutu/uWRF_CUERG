@@ -801,7 +801,7 @@ MODULE module_sf_bep_bem
                    nzurban(iurb),z_u,cop_u,pwin_u,beta_u,           & 
                    sw_cond_u,time_on_u,time_off_u,targtemp_u,       &
                    gaptemp_u,targhum_u,gaphum_u,perflo_u,           &
-                   hsesf_u,hsequip,                                 &
+                   hsesf_u,hsequip,bldac_frc_u,cooled_frc_u,       &
                    tw1D,tg1D,tr1D,sfw1D,sfg1D,sfr1D,                & 
                    a_u1D,a_v1D,a_t1D,a_e1D,                         & 
                    b_u1D,b_v1D,b_t1D,b_ac1D,b_e1D,b_q1D,            & 
@@ -900,8 +900,7 @@ MODULE module_sf_bep_bem
          meso_urb=(1./4.)*FRC_URB2D(ix,iy)/((bs_urb(1,iurb)+ws_urb(1,iurb))*bs_urb(2,iurb))+ &
                   (1./4.)*FRC_URB2D(ix,iy)/((bs_urb(2,iurb)+ws_urb(2,iurb))*bs_urb(1,iurb))
 
-         meso_urb= meso_urb*bldac_frc_u(iurb)*cooled_frc_u(iurb)   !! adjust for fraction AC
-         
+                 
          ibui=0
          nlev=0
          nbui=0
@@ -1000,7 +999,7 @@ MODULE module_sf_bep_bem
                       nzu,z_u,cop_u,pwin_u,beta_u,sw_cond_u,           & 
                       time_on_u,time_off_u,targtemp_u,                 &
                       gaptemp_u,targhum_u,gaphum_u,perflo_u,           &
-                      hsesf_u,hsequip,                                 &
+                      hsesf_u,hsequip,bldac_frc_u,cooled_frc_u,        &
                       tw,tg,tr,sfw,sfg,sfr,                            & 
                       a_u,a_v,a_t,a_e,                                 &
                       b_u,b_v,b_t,b_ac,b_e,b_q,                        & 
@@ -1118,6 +1117,8 @@ MODULE module_sf_bep_bem
       real perflo_u(nurbm)
       real hsesf_u(nurbm)
       real hsequip(24)
+      real bldac_frc_u(nurbm)
+      real cooled_frc_u(nurbm)
 
 ! ----------------------------------------------------------------------
 ! INPUT-OUTPUT
@@ -1537,10 +1538,11 @@ MODULE module_sf_bep_bem
                    cop_u(iurb),beta_u(iurb),sw_cond_u(iurb),time_on_u(iurb), &
                    time_off_u(iurb),targtemp_u(iurb),gaptemp_u(iurb),        &
                    targhum_u(iurb),gaphum_u(iurb),perflo_u(iurb),            &
-                   hsesf_u(iurb),hsequip,                                    &
+                 hsesf_u(iurb),hsequip,bldac_frc_u(iurb),cooled_frc_u(iurb), &
      	           dzf,csf,alaf,dzgb,csgb,alagb,dzr,csr,                     &
      	           alar,tlevb1D,qlevb1D,twb1D,twlevb1D,tflevb1D,tglevb1D,    &
      	           trb1D,sflev1D,lflev1D,consumlev1D,sfvlev1D,lfvlev1D)      
+
 
          !print*,'nz_um A',nz_um
          !print*,'nlev(ibui) A',nlev(ibui)
