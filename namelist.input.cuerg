@@ -11,7 +11,7 @@
  start_second                        = 00,   00,   00,
  end_year                            = 2018, 2018, 2018,
  end_month                           = 07,   07,   07,
- end_day                             = 15,   15,   15,
+ end_day                             = 04,   04,   04,
  end_hour                            = 21,   21,   21,
  end_minute                          = 00,   00,   00,
  end_second                          = 00,   00,   00,
