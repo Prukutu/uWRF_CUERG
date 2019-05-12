@@ -2044,9 +2044,11 @@ MODULE module_sf_bem
          if (hsneed.gt.0) then         ! air conditioning is cooling 
                                        ! and the heat is pumped out into the atmosphere  
 	      hsout=(1/cop)*(abs(hsneed)+abs(hlneed))+hsneed
+	      
 	      hsout=hsout*bldac_frc*cooled_frc
           hlout=hlneed*bldac_frc*cooled_frc
           consump=(1./cop)*(abs(hsneed)+abs(hlneed))
+          consump=consump*bldac_frc*cooled_frc
 !!        hsout=0.             
 !!        hlout=0.
 
