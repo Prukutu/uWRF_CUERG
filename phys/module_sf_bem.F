@@ -2036,19 +2036,25 @@ MODULE module_sf_bem
 !
          real hsout      !sensible heat pumped out into the atmosphere [W]
          real hlout      !latent heat pumped out into the atmosphere [W]
-         real consump    !Electrical consumption of the air conditioning system [W]                     
+         real consump    !Electrical consumption of the air conditioning system [W] 
+
+!LOCAL  VARIABLES
+!
+         integer hsneed_temp
+         integer hlneed_temp  
+                                   
 !
 !Performance of the air conditioning system
 !
-	  hsneed=hsneed*bldac_frc*cooled_frc
-	  hlneed=hlneed*bldac_frc*cooled_frc
+	  hsneed_temp=hsneed*bldac_frc*cooled_frc
+	  hlneed_temp=hlneed*bldac_frc*cooled_frc
 
 
          if (hsneed.gt.0) then         ! air conditioning is cooling 
                                        ! and the heat is pumped out into the atmosphere  
-	  hsout=(1/cop)*(abs(hsneed)+abs(hlneed))+hsneed
-          hlout=hlneed
-          consump=(1./cop)*(abs(hsneed)+abs(hlneed))
+	      hsout=(1/cop)*(abs(hsneed_temp)+abs(hlneed_temp))+hsneed_temp
+          hlout=hlneed_temp
+          consump=(1./cop)*(abs(hsneed_temp)+abs(hlneed_temp))
 !!        hsout=0.             
 !!        hlout=0.
 
