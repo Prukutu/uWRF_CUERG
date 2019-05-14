@@ -7,7 +7,7 @@ MODULE module_sf_bep_bem
 ! SGClarke 09/11/2008
 ! Access urban_param.tbl values through calling urban_param_init in module_physics_init
 ! for CASE (BEPSCHEME) select sf_urban_physics
-!
+! With CUERG changes
 ! -----------------------------------------------------------------------
 !  Dimension for the array used in the BEP module
 ! -----------------------------------------------------------------------
@@ -42,7 +42,7 @@ MODULE module_sf_bep_bem
 !Parameters of the windows. The glasses of windows are considered without films  -
 !Read the paper of J.Karlsson and A.Roos(2000):"modelling the angular behaviour  -
 !of the total solar energy transmittance of windows".Solar Energy Vol.69,No.4,   -
-!pp. 321-329, for more details.                                                  -
+!pp. 321-329, for more details.                                                -
 !---------------------------------------------------------------------------------
       integer p_num            !number of panes in the windows (1,2 or 3)
       parameter (p_num=2)
@@ -1683,7 +1683,7 @@ MODULE module_sf_bep_bem
            enddo       
 
         enddo !ibui   
-        
+        3
 !-----------------------------------------------------------------------------
 !End loop over BEM -----------------------------------------------------------
 !-----------------------------------------------------------------------------
