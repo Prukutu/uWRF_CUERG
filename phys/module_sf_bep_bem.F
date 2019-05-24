@@ -321,6 +321,9 @@ MODULE module_sf_bep_bem
       real ah1D                    ! hour angle (it should come from the radiation routine)
       real rs1D                    ! solar radiation
       real rld1D                   ! downward flux of the longwave radiation
+      real rsdir1D                 ! dir component
+      real rsdni1D                 ! dni component 
+      real rsdif1D                 ! dif component
 
 
       real tw1D(2*ndm,nz_um,nwr_u,nbui_max) ! temperature in each layer of the wall
