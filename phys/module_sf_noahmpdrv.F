@@ -2600,7 +2600,7 @@ END DO
 
   CALL BEP_BEM( frc_urb2d,  utype_urb2d,    itimestep,         dz8w,       &
                        dt,        u_phy,        v_phy,                     &
-                   th_phy,          rho,        p_phy,       swdown,  glw, &
+                   th_phy,rho,p_phy,swdown,glw,swddir,swddni,swddif,       &
                       gmt,       julday,        xlong,         xlat,       &
                declin_urb,   cosz_urb2d,    omg_urb2d,                     &
          num_urban_layers, num_urban_hi,                                   &
@@ -2610,7 +2610,7 @@ END DO
               cm_ac_urb3d, sfvent_urb3d, lfvent_urb3d,                     &
              sfwin1_urb3d, sfwin2_urb3d,                                   &
                sfw1_urb3d,   sfw2_urb3d,    sfr_urb3d,    sfg_urb3d,       &
-                 lp_urb2d,     hi_urb2d,     lb_urb2d,    hgt_urb2d,       &
+                 lp_urb2d,     hi_urb2d,     lb_urb2d,    hgt_urb2d,acd_urb2d,  &
                   a_u_bep,      a_v_bep,      a_t_bep,                     &
                   a_e_bep,      b_u_bep,      b_v_bep,                     &
                   b_t_bep,      b_e_bep,      b_q_bep,      dlg_bep,       &
