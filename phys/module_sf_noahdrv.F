@@ -29,7 +29,7 @@ CONTAINS
 ! Urban related variable are added to arguments - urban
 !----------------------------------------------------------------
    SUBROUTINE lsm(DZ8W,QV3D,P8W3D,T3D,TSK,                      &
-                  HFX,QFX,LH,GRDFLX, QGH,GSW,SWDOWN,GLW,SWDDIR  &
+                  HFX,QFX,LH,GRDFLX, QGH,GSW,SWDOWN,GLW,SWDDIR,  &
                   SWDDNI,SWDDIF,SMSTAV,SMSTOT,                  &
                   SFCRUNOFF, UDRUNOFF,IVGTYP,ISLTYP,ISURBAN,ISICE,VEGFRA,    &
                   ALBEDO,ALBBCK,ZNT,Z0,TMN,XLAND,XICE,EMISS,EMBCK,   &
