@@ -29,7 +29,8 @@ CONTAINS
 ! Urban related variable are added to arguments - urban
 !----------------------------------------------------------------
    SUBROUTINE lsm(DZ8W,QV3D,P8W3D,T3D,TSK,                      &
-                  HFX,QFX,LH,GRDFLX, QGH,GSW,SWDOWN,GLW,SMSTAV,SMSTOT, &
+                  HFX,QFX,LH,GRDFLX, QGH,GSW,SWDOWN,GLW,SWDDIR  &
+                  SWDDNI,SWDDIF,SMSTAV,SMSTOT,                  &
                   SFCRUNOFF, UDRUNOFF,IVGTYP,ISLTYP,ISURBAN,ISICE,VEGFRA,    &
                   ALBEDO,ALBBCK,ZNT,Z0,TMN,XLAND,XICE,EMISS,EMBCK,   &
                   SNOWC,QSFC,RAINBL,MMINLU,                     &
@@ -261,6 +262,9 @@ CONTAINS
                                                            GSW, &
                                                         SWDOWN, & !added 10 jan 2007
                                                            GLW, &
+                                                        SWDDIR, &
+                                                        SWDDNI, &
+                                                        SWDDIF, &
                                                         RAINBL, &
                                                         EMBCK,  &
                                                         SR
@@ -1530,7 +1534,7 @@ CONTAINS
         
 
        CALL BEP_BEM(frc_urb2d,utype_urb2d,itimestep,dz8w,dt,u_phy,v_phy, &
-                th_phy,rho,p_phy,swdown,glw,                           &
+                th_phy,rho,p_phy,swdown,glw,swddir,swddni,swddif,      &
                 gmt,julday,xlong,xlat,declin_urb,cosz_urb2d,omg_urb2d, &
                 num_urban_layers,num_urban_hi,                         &
                 trb_urb4d,tw1_urb4d,tw2_urb4d,tgb_urb4d,               &

@@ -76,7 +76,7 @@ MODULE module_sf_bep_bem
    CONTAINS
  
       subroutine BEP_BEM(FRC_URB2D,UTYPE_URB2D,itimestep,dz8w,dt,u_phy,v_phy,      &
-                      th_phy,rho,p_phy,swdown,glw,                                 &
+                      th_phy,rho,p_phy,swdown,glw,swddir,swddni,swddif,            &
                       gmt,julday,xlong,xlat,                                       &
                       declin_urb,cosz_urb2d,omg_urb2d,                             &
                       num_urban_layers,num_urban_hi,                               &
@@ -116,6 +116,9 @@ MODULE module_sf_bep_bem
    REAL, DIMENSION( ims:ime, kms:kme, jms:jme )::   V
    REAL, DIMENSION( ims:ime , jms:jme )        ::   GLW
    REAL, DIMENSION( ims:ime , jms:jme )        ::   swdown
+   REAL, DIMENSION( ims:ime , jms:jme )        ::   swddif
+   REAL, DIMENSION( ims:ime , jms:jme )        ::   swddir
+   REAL, DIMENSION( ims:ime , jms:jme )        ::   swddni
    REAL, DIMENSION( ims:ime, jms:jme )         ::   UST
    INTEGER, DIMENSION( ims:ime , jms:jme ), INTENT(IN )::   UTYPE_URB2D
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN )::   FRC_URB2D
@@ -787,6 +790,10 @@ MODULE module_sf_bep_bem
          acd1D=acd_urb2d(ix,iy)
          rs1D=swdown(ix,iy)
          rld1D=glw(ix,iy)
+
+         rsdir1D=swddir(ix,iy)
+         rsdni1D=swddni(ix,iy)
+         rsdif1D=swddif(ix,iy)
 
          zr1D=acos(COSZ_URB2D(ix,iy))
          deltar1D=DECLIN_URB

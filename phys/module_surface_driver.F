@@ -8,7 +8,8 @@ CONTAINS
      &           acgrdflx,achfx,aclhf                                 &
      &          ,acsnom,acsnow,snowfallac,akhs,akms,albedo,br,canwat  &
      &          ,chklowq,dt,dx,dz8w,dzs,glw                           &
-     &          ,grdflx,gsw,swdown,gz1oz0,hfx,ht,ifsnow,isfflx        &
+     &          ,grdflx,gsw,swdown,gz1oz0,hfx,swddir,swddni,swddif    &
+     &          ,ht,ifsnow,isfflx                                     &
      &          ,fractional_seaice,seaice_albedo_opt                  &
      &          ,seaice_albedo_default,seaice_thickness_opt,          &
      &          seaice_thickness_default                              &
@@ -619,6 +620,9 @@ CONTAINS
    REAL, DIMENSION( ims:ime , 1:num_soil_layers, jms:jme ), INTENT(OUT)  ::   SMCREL
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN )::   GLW
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(INOUT)::   GSW,SWDOWN
+   REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN)::    SWDDIR
+   REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN)::    SWDDNI
+   REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN)::    SWDDIF
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN )::   HT
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(IN )::   RAINCV
    REAL, DIMENSION( ims:ime , jms:jme ), INTENT(INOUT)::   SST
@@ -2637,7 +2641,8 @@ CONTAINS
 !  END FASDAS
 !
                CALL lsm(dz8w,qv_curr,p8w,t_phy,tsk,                 &
-                hfx,qfx,lh,grdflx,qgh,gsw,swdown,glw,smstav,smstot,    &
+                hfx,qfx,lh,grdflx,qgh,gsw,swdown,glw,swddir,    &
+                swddni,swddif,smstav,smstot,                                  &
                 sfcrunoff,udrunoff,ivgtyp,isltyp,isurban,isice,vegfra,        &
                 albedo,albbck,znt,z0, tmn,xland,xice,emiss, embck,    &
                 snowc,qsfc,rainbl,                              &
