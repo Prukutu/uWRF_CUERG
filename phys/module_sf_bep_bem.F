@@ -86,7 +86,7 @@ MODULE module_sf_bep_bem
                       cm_ac_urb3d,sfvent_urb3d,lfvent_urb3d,                       &
                       sfwin1_urb3d,sfwin2_urb3d,                                   &
                       sfw1_urb3d,sfw2_urb3d,sfr_urb3d,sfg_urb3d,                   &
-                      lp_urb2d,hi_urb2d,lb_urb2d,hgt_urb2d,                        &
+                      lp_urb2d,hi_urb2d,lb_urb2d,hgt_urb2d,acd_urb2d               &
                       a_u,a_v,a_t,a_e,b_u,b_v,                                     &
                       b_t,b_e,b_q,dlg,dl_u,sf,vl,                                  &
                       rl_up,rs_abs,emiss,grdflx_urb,qv_phy,                        &
@@ -156,6 +156,7 @@ MODULE module_sf_bep_bem
    REAL, DIMENSION( ims:ime,jms:jme), INTENT(IN) :: lp_urb2d
    REAL, DIMENSION( ims:ime,jms:jme), INTENT(IN) :: lb_urb2d
    REAL, DIMENSION( ims:ime,jms:jme), INTENT(IN) :: hgt_urb2d
+   REAL, DIMENSION( ims:ime,jms:jme), INTENT(IN) :: acd_urb2d
 
    real z(ims:ime,kms:kme,jms:jme)            ! Vertical coordinates
    REAL, INTENT(IN )::   DT      ! Time step
@@ -342,6 +343,7 @@ MODULE module_sf_bep_bem
       real sf_ac
       integer ibui,nbui
       integer nlev(nz_um)
+      real acd1D                    ! AC fraction 
 !
 !End new variables
 !
@@ -782,6 +784,7 @@ MODULE module_sf_bep_bem
 	 enddo
 	 enddo
          
+         acd1D=acd_urb2d(ix,iy)
          rs1D=swdown(ix,iy)
          rld1D=glw(ix,iy)
 
@@ -790,7 +793,7 @@ MODULE module_sf_bep_bem
          ah1D=OMG_URB2D(ix,iy)
 
          call BEP1D(iurb,kms,kme,kts,kte,z1D,dt,ua1D,va1D,pt1D,da1D,pr1D,pt01D,  &
-                   zr1D,deltar1D,ah1D,rs1D,rld1D,alagb,             & 
+                   zr1D,deltar1D,ah1D,rs1D,rld1D,acd1D,alagb,       & 
                    alag,alaw,alar,alaf,csgb,csg,csw,csr,csf,        & 
                    dzr,dzf,dzw,dzgb,                                &
                    albg_u(iurb),albw_u(iurb),albr_u(iurb),          &
@@ -990,7 +993,7 @@ MODULE module_sf_bep_bem
 ! ===6=8===============================================================72
 
       subroutine BEP1D(iurb,kms,kme,kts,kte,z,dt,ua,va,pt,da,pr,pt0,   &  
-                      zr,deltar,ah,rs,rld,alagb,                       & 
+                      zr,deltar,ah,rs,rld,acd,alagb,                   & 
                       alag,alaw,alar,alaf,csgb,csg,csw,csr,csf,        & 
                       dzr,dzf,dzw,dzgb,                                &
                       albg,albw,albr,albwin,emg,emw,emr,               & 
@@ -1071,6 +1074,7 @@ MODULE module_sf_bep_bem
       real ah                    ! Hour angle
       real rs                    ! Solar radiation
       real rld                   ! Downward flux of the longwave radiation
+      real acd                    ! AC Percentage from grid
 
 ! Data relative to the "urban grid"
 
@@ -1538,7 +1542,7 @@ MODULE module_sf_bep_bem
                    cop_u(iurb),beta_u(iurb),sw_cond_u(iurb),time_on_u(iurb), &
                    time_off_u(iurb),targtemp_u(iurb),gaptemp_u(iurb),        &
                    targhum_u(iurb),gaphum_u(iurb),perflo_u(iurb),            &
-                 hsesf_u(iurb),hsequip,bldac_frc_u(iurb),cooled_frc_u(iurb), &
+                 hsesf_u(iurb),hsequip,bldac_frc_u(iurb),cooled_frc_u(iurb),acd, &
      	           dzf,csf,alaf,dzgb,csgb,alagb,dzr,csr,                     &
      	           alar,tlevb1D,qlevb1D,twb1D,twlevb1D,tflevb1D,tglevb1D,    &
      	           trb1D,sflev1D,lflev1D,consumlev1D,sfvlev1D,lfvlev1D)      
