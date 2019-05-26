@@ -802,6 +802,11 @@ MODULE module_sf_bep_bem
          deltar1D=DECLIN_URB
          ah1D=OMG_URB2D(ix,iy)
 
+         print*, 'AC_FAC', acd1D
+         print*, 'DIR', rsdir1D
+         print*, 'DNI', rsdni1D
+         print*, 'DIF', rsdif1D
+
          call BEP1D(iurb,kms,kme,kts,kte,z1D,dt,ua1D,va1D,pt1D,da1D,pr1D,pt01D,  &
                    zr1D,deltar1D,ah1D,rs1D,rld1D,acd1D,alagb,       & 
                    alag,alaw,alar,alaf,csgb,csg,csw,csr,csf,        & 
@@ -992,10 +997,10 @@ MODULE module_sf_bep_bem
 
         time_bep=time_bep+dt
 
-      print*, 'ss_urb', ss_urb
-      print*, 'pb_urb', pb_urb
-      print*, 'nz_urb', nz_urb
-      print*, 'd_urb',  d_urb
+!      print*, 'ss_urb', ss_urb
+!      print*, 'pb_urb', pb_urb
+!      print*, 'nz_urb', nz_urb
+!      print*, 'd_urb',  d_urb
             
       return
       end subroutine BEP_BEM
